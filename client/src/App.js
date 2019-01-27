@@ -10,9 +10,21 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      data: [ {place: "DFW"}, {place: "IAH"}, {place: "ORD"}, {place: "ATL"}]
+      data: []
     }
   }
+
+  componentDidMount() {
+    // fetch('/airports?{}')
+    //   .then(res => {
+    //       console.log(res);
+    //       return res.json()
+    //    })
+    //   .then(users => { 
+    //       console.log(users); 
+    //       this.setState({ users })
+    //    });
+   }
 
   render() {
     
@@ -27,12 +39,12 @@ class App extends Component {
         </AppBar>
         <div style={{display: "flex"}}>
           <div style={{height: '100%', width: '60%', padding: '10px', backgroundColor: '#FF7D93', display: 'flex', flexDirection: 'column'}}>
-            <SimpleMap/>
+            <SimpleMap content = {this.state.data}/>
           </div>
           <div style={{height: '860px', overflow: 'auto', width: '40%', padding: '10px', backgroundColor: '#FF7D93'}}>
             {this.state.data.map(function(object, i){
                 let temp = [];
-                temp.push(<SimpleCard/>);
+                temp.push(<SimpleCard content = {object} key={i}/>);
                 temp.push(<br/>);
                 return temp;
             })}

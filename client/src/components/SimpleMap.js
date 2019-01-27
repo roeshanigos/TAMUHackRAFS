@@ -22,12 +22,15 @@ const Map = compose(
             defaultCenter={{ lat: props.lat, lng: props.lng}}
             onClick={props.onMapClick}
         >
-            {props.isMarkerShown && <Marker position={props.markerPosition} />}
-            { <Marker position = {{ lat: props.lat, lng: props.lng }} icon = 'https://imgur.com/Exy12Aq'/>}
+            {props.isMarkerShown && <Marker position={props.markerPosition} icon = 'https://i.ibb.co/DMJR4WJ/map-marker-hi-2-1.png'/>}
+            { <Marker position = {{ lat: props.lat, lng: props.lng }} icon ='https://i.ibb.co/PNLnTpX/map-marker-hi-2.png'/>}
+            {props.data.map(function(object, i){
+                return <Marker position = {{ lat: object.lat, lng: object.lng }} icon ='https://i.ibb.co/PNLnTpX/map-marker-hi-2.png'/>
+            })}
         </GoogleMap>
     )
 
-export default class MapContainer extends React.Component {
+export default class SampleMap extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -60,6 +63,7 @@ export default class MapContainer extends React.Component {
                     mapElement={<div style={{ height: `100%` }} />}
                     lat={this.state.lat}
                     lng={this.state.lng}
+                    data = {this.props.content}
                 />
             </div>
         )
